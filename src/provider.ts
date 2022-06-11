@@ -45,7 +45,7 @@ export const providerSetup: Record<string, ProviderSetup> = {
     await writeJson(imagesConfig, {
       version: 3,
       images: {
-        domains: moduleOptions.domains,
+        domains: ['images.unsplash.com'],
         minimumCacheTTL: 60,
         formats: ['image/webp', 'image/avif'],
         sizes: Array.from(new Set(Object.values(moduleOptions.screens || {})))
