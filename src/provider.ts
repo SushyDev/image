@@ -37,7 +37,7 @@ export const providerSetup: Record<string, ProviderSetup> = {
 
   // https://vercel.com/docs/more/adding-your-framework#images
   async vercel (_providerOptions, moduleOptions, nuxt) {
-    const imagesConfig = resolve(nuxt.options.srcDir, 'config.json')
+    const imagesConfig = resolve(nuxt.options.rootDir, 'config.json')
     await mkdirp(dirname(imagesConfig))
     // eslint-disable-next-line no-console
     console.warn(imagesConfig)
