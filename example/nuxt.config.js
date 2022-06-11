@@ -12,7 +12,7 @@ export default {
     ]
   },
   modules: [
-    '@nuxt/image'
+    '@sushydev/image'
   ],
   image: {
     domains: ['https://images.unsplash.com', 'https://source.unsplash.com']

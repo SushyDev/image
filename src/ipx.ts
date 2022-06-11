@@ -23,7 +23,7 @@ export const ipxSetup: ProviderSetup = async (_providerOptions, moduleOptions, n
     const { createIPX, createIPXMiddleware } = await import('ipx')
       .catch((err) => {
         // eslint-disable-next-line no-console
-        console.error('[@nuxt/image] `ipx` is an optional dependency for local image optimization and is not properly installed. Please try `npm install` or `yarn install` again.')
+        console.error('[@sushydev/image] `ipx` is an optional dependency for local image optimization and is not properly installed. Please try `npm install` or `yarn install` again.')
         throw new Error(err)
       })
     const ipx = createIPX(ipxOptions)
@@ -35,12 +35,12 @@ export const ipxSetup: ProviderSetup = async (_providerOptions, moduleOptions, n
 
   // Warn if unhandled /_ipx endpoint only if not using `modules`
   const installedInModules = nuxt.options.modules.some(
-    (mod: string | (() => any)) => typeof mod === 'string' && mod.includes('@nuxt/image')
+    (mod: string | (() => any)) => typeof mod === 'string' && mod.includes('@sushydev/image')
   )
 
   if (!isStatic && !hasUserProvidedIPX && !installedInModules && lt(nuxt.constructor.version, '2.16.0')) {
     // eslint-disable-next-line no-console
-    console.warn('[@nuxt/image] If you would like to use the `ipx` provider at runtime.\nMake sure to follow the instructions at https://image.nuxtjs.org/providers/ipx .')
+    console.warn('[@sushydev/image] If you would like to use the `ipx` provider at runtime.\nMake sure to follow the instructions at https://image.nuxtjs.org/providers/ipx .')
   }
 
   if (nuxt.options.dev || hasUserProvidedIPX) {

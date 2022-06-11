@@ -2,7 +2,7 @@ import consola from 'consola'
 import hasha from 'hasha/index.js'
 import { name, version } from '../package.json'
 
-export const logger = consola.withScope('@nuxt/image')
+export const logger = consola.withScope('@sushydev/image')
 
 export const pkg = { name, version }
 
