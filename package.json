@@ -1,6 +1,6 @@
 {
   "name": "image",
-  "version": "0.6.9",
+  "version": "0.6.10",
   "description": "Nuxt Image Module",
   "repository": "sushydev/image",
   "license": "MIT",
@@ -73,6 +73,7 @@
     "ipx": "^0.9.4"
   },
   "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
     "access": "public"
   },
   "vetur": {
