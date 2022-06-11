@@ -31,7 +31,6 @@ export const getImage: ProviderGetImage = (src, { modifiers, baseURL = '/_vercel
       url: src,
       w: String(width),
       q: String(modifiers?.quality || '100')
-      dirL
     })
   }
 }
