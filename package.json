@@ -1,8 +1,8 @@
 {
-  "name": "@nuxt/image",
-  "version": "0.6.5",
+  "name": "@sushydev/image",
+  "version": "0.6.6",
   "description": "Nuxt Image Module",
-  "repository": "nuxt/image",
+  "repository": "sushydev/image",
   "license": "MIT",
   "sideEffects": false,
   "main": "dist/module.js",
