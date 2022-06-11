@@ -1,8 +1,8 @@
 {
-  "name": "@nuxt/image",
-  "version": "0.6.2",
+  "name": "@sushydev/image",
+  "version": "0.6.6",
   "description": "Nuxt Image Module",
-  "repository": "nuxt/image",
+  "repository": "sushydev/image",
   "license": "MIT",
   "sideEffects": false,
   "main": "dist/module.js",
@@ -73,7 +73,8 @@
     "ipx": "^0.9.4"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://npm.pkg.github.com"
   },
   "vetur": {
     "tags": "vetur/tags.json",
