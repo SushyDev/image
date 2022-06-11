@@ -36,11 +36,11 @@ export const providerSetup: Record<string, ProviderSetup> = {
   static: ipxSetup,
 
   // https://vercel.com/docs/more/adding-your-framework#images
-  async vercel (_providerOptions, moduleOptions, nuxt) {
-    const imagesConfig = resolve(nuxt.options.rootDir, 'config.json')
+  async vercel (_providerOptions, moduleOptions) {
+    const imagesConfig = resolve(process.cwd(), '.vercel/output/config.json')
     await mkdirp(dirname(imagesConfig))
     // eslint-disable-next-line no-console
-    console.warn(imagesConfig)
+    console.info(imagesConfig)
     await writeJson(imagesConfig, {
       version: 3,
       images: {
