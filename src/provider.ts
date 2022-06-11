@@ -32,7 +32,7 @@ export const providerSetup: Record<string, ProviderSetup> = {
 
   // https://vercel.com/docs/more/adding-your-framework#images
   async vercel (_providerOptions, moduleOptions, nuxt) {
-    const imagesConfig = resolve(nuxt.options.rootDir, '.vercel_build_output/config/images.json')
+    const imagesConfig = resolve(nuxt.options.rootDir, '.vercel/output/config/images.json')
     await mkdirp(dirname(imagesConfig))
     await writeJson(imagesConfig, {
       domains: moduleOptions.domains,
