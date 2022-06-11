@@ -36,14 +36,18 @@ export const providerSetup: Record<string, ProviderSetup> = {
   static: ipxSetup,
 
   // https://vercel.com/docs/more/adding-your-framework#images
-  async vercel (_providerOptions, moduleOptions) {
-    const imagesConfig = resolve(__dirname, 'config.json')
-    console.warn(imagesConfig)
+  async vercel (_providerOptions, moduleOptions, nuxt) {
+    const imagesConfig = resolve(
+      nuxt.options.rootDir,
+      '.vercel/output/config.json'
+    )
     await mkdirp(dirname(imagesConfig))
     await writeJson(imagesConfig, {
       version: 3,
       images: {
         domains: moduleOptions.domains,
+        minimumCacheTTL: 60,
+        formats: ['image/webp', 'image/avif'],
         sizes: Array.from(new Set(Object.values(moduleOptions.screens || {})))
       }
     })
