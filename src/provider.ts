@@ -42,6 +42,8 @@ export const providerSetup: Record<string, ProviderSetup> = {
       '.vercel/output/config.json'
     )
     await mkdirp(dirname(imagesConfig))
+    // eslint-disable-next-line no-console
+    console.warn(imagesConfig)
     await writeJson(imagesConfig, {
       version: 3,
       images: {
