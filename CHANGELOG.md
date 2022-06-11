@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.6.7](https://github.com/sushydev/image/compare/v0.6.6...v0.6.7) (2022-06-11)
+
 ### [0.6.6](https://github.com/sushydev/image/compare/v0.6.5...v0.6.6) (2022-06-11)
 
 ### [0.6.5](https://github.com/nuxt/image/compare/v0.6.4...v0.6.5) (2022-06-11)
