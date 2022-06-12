@@ -37,17 +37,20 @@ export const providerSetup: Record<string, ProviderSetup> = {
 
   // https://vercel.com/docs/more/adding-your-framework#images
   async vercel (_providerOptions, moduleOptions) {
-    const imagesConfig = resolve(process.cwd(), '.vercel/output/images-manifest.json')
+    const imagesConfig = resolve(
+      process.cwd(),
+      '.vercel/output/images-manifest.json'
+    )
     await mkdirp(dirname(imagesConfig))
     // eslint-disable-next-line no-console
     console.info(imagesConfig)
     await writeJson(imagesConfig, {
       version: 1,
       images: {
-        domains: ['images.unsplash.com'],
+        sizes: [256, 320, 384],
+        domains: ['images.unsplash.com', 'storage.googleapis.com'],
         minimumCacheTTL: 60,
-        formats: ['image/webp', 'image/avif'],
-        sizes: Array.from(new Set(Object.values(moduleOptions.screens || {})))
+        formats: ['image/webp', 'image/avif']
       }
     })
   }
