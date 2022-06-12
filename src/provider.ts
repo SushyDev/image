@@ -40,7 +40,6 @@ export const providerSetup: Record<string, ProviderSetup> = {
     const sizes = Array.from(
       new Set(Object.values(moduleOptions.screens || {}))
     )
-    // eslint-disable-next-line no-console
     console.info(sizes)
 
     const imageConfig = {
@@ -53,14 +52,17 @@ export const providerSetup: Record<string, ProviderSetup> = {
       }
     }
 
-    const nuxtRoot = resolve(nuxt.options.buildDir, 'images-manifest.json')
-    const altnuxt = resolve(nuxt.options.rootDir, '.nuxt/images-manifest.json')
     try {
-      await mkdirp(dirname(nuxtRoot))
-      await writeJson(nuxtRoot, imageConfig)
+      const manifest = resolve(nuxt.options.buildDir, 'images-manifest.json')
+      await mkdirp(dirname(manifest))
+      await writeJson(manifest, imageConfig)
 
-      await mkdirp(dirname(altnuxt))
-      await writeJson(altnuxt, imageConfig)
+      const manifestDist = resolve(
+        nuxt.options.rootDir,
+        '.nuxt/images-manifest.json'
+      )
+      await mkdirp(dirname(manifestDist))
+      await writeJson(manifestDist, imageConfig)
     } catch (e) {
       // eslint-disable-next-line no-console
       console.warn(e)
