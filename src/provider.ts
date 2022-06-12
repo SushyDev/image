@@ -37,12 +37,12 @@ export const providerSetup: Record<string, ProviderSetup> = {
 
   // https://vercel.com/docs/more/adding-your-framework#images
   async vercel (_providerOptions, moduleOptions) {
-    const imagesConfig = resolve(process.cwd(), '.vercel/output/config.json')
+    const imagesConfig = resolve(process.cwd(), '.vercel/output/images-manifest.json')
     await mkdirp(dirname(imagesConfig))
     // eslint-disable-next-line no-console
     console.info(imagesConfig)
     await writeJson(imagesConfig, {
-      version: 3,
+      version: 1,
       images: {
         domains: ['images.unsplash.com'],
         minimumCacheTTL: 60,
