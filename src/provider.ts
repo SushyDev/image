@@ -39,7 +39,7 @@ export const providerSetup: Record<string, ProviderSetup> = {
   async vercel (_providerOptions, moduleOptions) {
     const imagesConfig = resolve(
       process.cwd(),
-      '.vercel/output/images-manifest.json'
+      '.output/images-manifest.json'
     )
     await mkdirp(dirname(imagesConfig))
     // eslint-disable-next-line no-console
