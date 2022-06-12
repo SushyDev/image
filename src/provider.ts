@@ -36,8 +36,8 @@ export const providerSetup: Record<string, ProviderSetup> = {
   static: ipxSetup,
 
   // https://vercel.com/docs/more/adding-your-framework#images
-  async vercel (_providerOptions, moduleOptions, nuxt) {
-    const imagesConfig = resolve(nuxt.options.buildDir, 'test/images-manifest.json')
+  async vercel (_providerOptions, moduleOptions) {
+    const imagesConfig = resolve(process.cwd(), 'images-manifest.json')
     await mkdirp(dirname(imagesConfig))
     const sizes = Array.from(
       new Set(Object.values(moduleOptions.screens || {}))
