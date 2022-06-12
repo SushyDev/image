@@ -37,36 +37,29 @@ export const providerSetup: Record<string, ProviderSetup> = {
 
   // https://vercel.com/docs/more/adding-your-framework#images
   async vercel (_providerOptions, moduleOptions, nuxt) {
-    const sizes = Array.from(
-      new Set(Object.values(moduleOptions.screens || {}))
-    )
-    console.info(sizes)
+    // const sizes = Array.from(
+    //   new Set(Object.values(moduleOptions.screens || {}))
+    // )
+    // console.info(sizes)
 
-    const imageConfig = {
-      version: 1,
-      images: {
-        sizes: [256, 384],
-        minimumCacheTTL: 60,
-        formats: ['image/webp', 'image/avif'],
-        domains: ['images.unsplash.com']
-      }
-    }
+    // const imageConfig = {
+    //   version: 1,
+    //   images: {
+    //     sizes: [256, 384],
+    //     minimumCacheTTL: 60,
+    //     formats: ['image/webp', 'image/avif'],
+    //     domains: ['images.unsplash.com']
+    //   }
+    // }
 
-    try {
-      const manifest = resolve(nuxt.options.buildDir, 'images-manifest.json')
-      await mkdirp(dirname(manifest))
-      await writeJson(manifest, imageConfig)
-
-      const manifestDist = resolve(
-        nuxt.options.rootDir,
-        '.nuxt/images-manifest.json'
-      )
-      await mkdirp(dirname(manifestDist))
-      await writeJson(manifestDist, imageConfig)
-    } catch (e) {
-      // eslint-disable-next-line no-console
-      console.warn(e)
-    }
+    // try {
+    //   const manifest = resolve(nuxt.options.buildDir, 'images-manifest.json')
+    //   await mkdirp(dirname(manifest))
+    //   await writeJson(manifest, imageConfig)
+    // } catch (e) {
+    //   // eslint-disable-next-line no-console
+    //   console.warn(e)
+    // }
   }
 }
 
