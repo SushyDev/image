@@ -11,10 +11,9 @@ export default {
       { hid: 'description', name: 'description', content: '' }
     ]
   },
-  modules: [
-    '@sushydev/image'
-  ],
+  target: 'static',
+  buildModules: ['@sushydev/image'],
   image: {
-    domains: ['https://images.unsplash.com', 'https://source.unsplash.com']
+    domains: ['images.unsplash.com', 'source.unsplash.com']
   }
 }
