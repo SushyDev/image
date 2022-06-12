@@ -36,33 +36,73 @@ export const providerSetup: Record<string, ProviderSetup> = {
   static: ipxSetup,
 
   // https://vercel.com/docs/more/adding-your-framework#images
-  async vercel (_providerOptions, moduleOptions) {
-    const imagesConfig = resolve(process.cwd(), 'images-manifest.json')
-    await mkdirp(dirname(imagesConfig))
-    const sizes = Array.from(
-      new Set(Object.values(moduleOptions.screens || {}))
-    )
-    // eslint-disable-next-line no-console
-    console.info(imagesConfig, sizes)
-    await writeJson(imagesConfig, {
-      version: 1,
-      images: {
-        deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-        imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-        path: '/_vercel/image',
-        loader: 'default',
-        disableStaticImages: false,
-        minimumCacheTTL: 60,
-        formats: ['image/webp'],
-        dangerouslyAllowSVG: false,
-        contentSecurityPolicy: "script-src 'none'; frame-src 'none'; sandbox;",
-        sizes: [
-          640, 750, 828, 1080, 1200, 1920, 2048, 3840, 16, 32, 48, 64, 96, 128,
-          256, 384
-        ],
-        domains: ['images.unsplash.com']
-      }
-    })
+  async vercel (_providerOptions, moduleOptions, nuxt) {
+    async function configOne () {
+      const imagesConfig = resolve(
+        nuxt.options.buildDir,
+        'dist/images-manifest.json'
+      )
+      await mkdirp(dirname(imagesConfig))
+      const sizes = Array.from(
+        new Set(Object.values(moduleOptions.screens || {}))
+      )
+      // eslint-disable-next-line no-console
+      console.info(imagesConfig, sizes)
+      await writeJson(imagesConfig, {
+        version: 1,
+        images: {
+          deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+          imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+          path: '/_vercel/image',
+          loader: 'default',
+          disableStaticImages: false,
+          minimumCacheTTL: 60,
+          formats: ['image/webp'],
+          dangerouslyAllowSVG: false,
+          contentSecurityPolicy:
+            "script-src 'none'; frame-src 'none'; sandbox;",
+          sizes: [
+            640, 750, 828, 1080, 1200, 1920, 2048, 3840, 16, 32, 48, 64, 96,
+            128, 256, 384
+          ],
+          domains: ['images.unsplash.com']
+        }
+      })
+    }
+    async function configTwo () {
+      const imagesConfig = resolve(
+        nuxt.options.buildDir,
+        'images-manifest.json'
+      )
+      await mkdirp(dirname(imagesConfig))
+      const sizes = Array.from(
+        new Set(Object.values(moduleOptions.screens || {}))
+      )
+      // eslint-disable-next-line no-console
+      console.info(imagesConfig, sizes)
+      await writeJson(imagesConfig, {
+        version: 1,
+        images: {
+          deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+          imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+          path: '/_vercel/image',
+          loader: 'default',
+          disableStaticImages: false,
+          minimumCacheTTL: 60,
+          formats: ['image/webp'],
+          dangerouslyAllowSVG: false,
+          contentSecurityPolicy:
+            "script-src 'none'; frame-src 'none'; sandbox;",
+          sizes: [
+            640, 750, 828, 1080, 1200, 1920, 2048, 3840, 16, 32, 48, 64, 96,
+            128, 256, 384
+          ],
+          domains: ['images.unsplash.com']
+        }
+      })
+    }
+    await configOne()
+    await configTwo()
   }
 }
 
