@@ -1,3 +1,4 @@
+import { readFile } from 'fs/promises'
 import { normalize, resolve, dirname } from 'upath'
 import { writeJson, mkdirp } from 'fs-extra'
 import { hash } from './utils'
@@ -43,12 +44,7 @@ export const providerSetup: Record<string, ProviderSetup> = {
     // eslint-disable-next-line no-console
     console.info(sizes)
 
-    const nuxtDist = resolve(
-      nuxt.options.buildDir,
-      'dist/images-manifest.json'
-    )
-    await mkdirp(dirname(nuxtDist))
-    await writeJson(nuxtDist, {
+    const imageConfig = {
       version: 1,
       images: {
         deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
@@ -66,82 +62,31 @@ export const providerSetup: Record<string, ProviderSetup> = {
         ],
         domains: ['images.unsplash.com']
       }
-    })
+    }
 
-    const nuxtRoot = resolve(
-      nuxt.options.buildDir,
-      'images-manifest.json'
-    )
-    await mkdirp(dirname(nuxtRoot))
-    await writeJson(nuxtRoot, {
-      version: 1,
-      images: {
-        deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-        imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-        path: '/_vercel/image',
-        loader: 'default',
-        disableStaticImages: false,
-        minimumCacheTTL: 60,
-        formats: ['image/webp'],
-        dangerouslyAllowSVG: false,
-        contentSecurityPolicy: "script-src 'none'; frame-src 'none'; sandbox;",
-        sizes: [
-          640, 750, 828, 1080, 1200, 1920, 2048, 3840, 16, 32, 48, 64, 96, 128,
-          256, 384
-        ],
-        domains: ['images.unsplash.com']
-      }
-    })
-
-    const altnuxt = resolve(
-      nuxt.options.rootDir,
-      '.nuxt/images-manifest.json'
-    )
-    await mkdirp(dirname(altnuxt))
-    await writeJson(altnuxt, {
-      version: 1,
-      images: {
-        deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-        imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-        path: '/_vercel/image',
-        loader: 'default',
-        disableStaticImages: false,
-        minimumCacheTTL: 60,
-        formats: ['image/webp'],
-        dangerouslyAllowSVG: false,
-        contentSecurityPolicy: "script-src 'none'; frame-src 'none'; sandbox;",
-        sizes: [
-          640, 750, 828, 1080, 1200, 1920, 2048, 3840, 16, 32, 48, 64, 96, 128,
-          256, 384
-        ],
-        domains: ['images.unsplash.com']
-      }
-    })
-
+    const nuxtDist = resolve(nuxt.options.buildDir, 'dist/images-manifest.json')
+    const nuxtRoot = resolve(nuxt.options.buildDir, 'images-manifest.json')
+    const altnuxt = resolve(nuxt.options.rootDir, '.nuxt/images-manifest.json')
     const altdist = resolve(
       nuxt.options.rootDir,
       '.nuxt/dist/images-manifest.json'
     )
-    await mkdirp(dirname(altdist))
-    await writeJson(altdist, {
-      version: 1,
-      images: {
-        deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-        imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-        path: '/_vercel/image',
-        loader: 'default',
-        disableStaticImages: false,
-        minimumCacheTTL: 60,
-        formats: ['image/webp'],
-        dangerouslyAllowSVG: false,
-        contentSecurityPolicy: "script-src 'none'; frame-src 'none'; sandbox;",
-        sizes: [
-          640, 750, 828, 1080, 1200, 1920, 2048, 3840, 16, 32, 48, 64, 96, 128,
-          256, 384
-        ],
-        domains: ['images.unsplash.com']
-      }
-    })
+    try {
+      await mkdirp(dirname(nuxtDist))
+      await writeJson(nuxtDist, imageConfig)
+
+      await mkdirp(dirname(nuxtRoot))
+      await writeJson(nuxtRoot, imageConfig)
+
+      await mkdirp(dirname(altnuxt))
+      await writeJson(altnuxt, imageConfig)
+
+      await mkdirp(dirname(altdist))
+      await writeJson(altdist, imageConfig)
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.warn(e)
+    }
   }
 }
 
